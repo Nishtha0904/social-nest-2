@@ -22,7 +22,7 @@ import {
   import { useUserContext } from "@/context/AuthContext";
   import { toast } from "../ui/use-toast";
   import { useNavigate } from "react-router-dom";
-  
+  import Loader from "../shared/Loader";
 type PostFormProps = {
     post?: Models.Document;
     action: "Create" | "Update";
@@ -145,11 +145,20 @@ const Postform = ({ post, action }: PostFormProps) => {
               )}
             />
             <div className="flex gap-4 items-center justify-end">
-            <Button type="button" className="shad-button_dark_4">cancel</Button>
-            <Button type="submit" className="shad-button_primary whitespace-nowrap">Submit</Button>    
-                
-            </div>
-           
+          <Button
+            type="button"
+            className="shad-button_dark_4"
+            onClick={() => navigate(-1)}>
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            className="shad-button_primary whitespace-nowrap"
+            disabled={isLoadingCreate || isLoadingUpdate}>
+            {(isLoadingCreate || isLoadingUpdate) && <Loader />}
+            {action} Post
+          </Button>
+        </div>
           </form>
         </Form>
       )
