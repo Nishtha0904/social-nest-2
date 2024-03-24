@@ -17,14 +17,15 @@ export const useSignInAccount=()=>{
 }
 
 export const useSignOutAccount = () => {
-    return useMutation({
+  return useMutation({
       mutationFn: signOutAccount,
-    });
-  };
+  })
+};
+
 
 
   export const useCreatePost = () => {
-    alert('in mutation entered');
+  
     const queryClient = useQueryClient();
     return useMutation({
       mutationFn: (post: INewPost) => createPost(post),
